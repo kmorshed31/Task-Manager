@@ -13,10 +13,10 @@ from transformers import pipeline
 import pandas as pd
 import json
 
-# Initialize a list to store tasks
+
 tasks = []
 
-# Function to display all tasks
+# display all tasks
 def display_tasks():
     if not tasks:
         print("No tasks available.")
@@ -30,7 +30,7 @@ def display_tasks():
         print(f"  Category: {task['category']}")
         print("-" * 30)
 
-# Function to add a task
+# add a task
 def add_task(name, description, priority, deadline, category):
     task = {
         "name": name,
@@ -42,7 +42,7 @@ def add_task(name, description, priority, deadline, category):
     tasks.append(task)
     print("Task added successfully!")
 
-# Function to delete a task
+# delete a task
 def delete_task(index):
     if 0 <= index < len(tasks):
         tasks.pop(index)
@@ -59,12 +59,12 @@ def suggest_category(description):
     result = classifier(description, candidate_labels=categories)
     return result["labels"][0]
 
-# Modified function to add a task with AI category suggestion
+# function to add a task with AI category suggestion
 def add_task_with_ai(name, description, priority, deadline):
     category = suggest_category(description)
     add_task(name, description, priority, deadline, category)
 
-# Main function for task management
+# function for task management
 def task_manager():
     while True:
         print("\nTask Manager Options:")
@@ -97,13 +97,13 @@ def task_manager():
         else:
             print("Invalid choice. Please try again.")
 
-# Function to save tasks to a JSON file
+# to save tasks to a JSON file
 def save_tasks(filename="tasks.json"):
     with open(filename, "w") as file:
         json.dump(tasks, file)
     print("Tasks saved successfully!")
 
-# Function to load tasks from a JSON file
+# to load tasks from a JSON file
 def load_tasks(filename="tasks.json"):
     global tasks
     try:
